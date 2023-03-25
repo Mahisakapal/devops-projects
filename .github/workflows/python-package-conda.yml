@@ -35,6 +35,7 @@ jobs:
     - name: npm install, build and test
       run: |
          cd 01-jenkins-setup/terraform/agent/
+         terraform init
          terraform plan
          terraform apply 
 
