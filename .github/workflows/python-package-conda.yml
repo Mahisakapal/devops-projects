@@ -22,10 +22,12 @@ jobs:
       with:
         # The Packer version to install and add to PATH.
         version: latest
-    - name: setup packer
-      run: |
-        cd 01-jenkins-setup
-        AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)
-        echo $AMI_ID
-        
+    - name: Packer build
+      # You may pin to the exact commit or the version.
+      # uses: riznob/packer-build-action@6fc818476da47cc44d89b7695ee38b4954188d23
+      uses: riznob/packer-build-action@v1.5
+      with:
+        # Packer template file to use for packer build
+        templateFile: 01-jenkins-setup/jenkins-agent.pkr.hcl
+
       
