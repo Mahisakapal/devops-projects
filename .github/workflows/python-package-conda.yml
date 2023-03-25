@@ -16,3 +16,7 @@ jobs:
       with:
         # The Packer version to install and add to PATH.
         version: latest
+    - name: setup eksctl
+      run: |
+        
+      
