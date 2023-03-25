@@ -9,6 +9,12 @@ jobs:
       max-parallel: 5
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2.7.0
+      with:
+        repository: ${{ github.repository }}
+
+    
     - name: Setup HashiCorp Packer
       # You may pin to the exact commit or the version.
       # uses: hashicorp/setup-packer@ae6b3ed3bec089bbfb576ab7d714df7cbc4b88a4
@@ -16,8 +22,9 @@ jobs:
       with:
         # The Packer version to install and add to PATH.
         version: latest
-    - name: setup eksctl
+    - name: setup packer
       run: |
+        cd 01-jenkins-setup
         AMI_ID=$(jq -r '.builds[-1].artifact_id' manifest.json | cut -d ":" -f2)
         echo $AMI_ID
         
